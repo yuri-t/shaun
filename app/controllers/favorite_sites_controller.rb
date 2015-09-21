@@ -5,6 +5,7 @@ class FavoriteSitesController < ApplicationController
   # GET /favorite_sites.json
   def index
     @favorite_sites = FavoriteSite.all
+    @favorite_form = FavoriteSite::SearchForm.new
   end
 
   # GET /favorite_sites/1
@@ -14,7 +15,7 @@ class FavoriteSitesController < ApplicationController
 
   # GET /favorite_sites/new
   def new
-    @favorite_site = FavoriteSite.new
+    @favorite_sites = FavoriteSite.new
   end
 
   # GET /favorite_sites/1/edit
