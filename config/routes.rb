@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :favorite_sites
+
   namespace :admin do
     resources :users
   end

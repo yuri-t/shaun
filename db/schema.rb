@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921002244) do
+ActiveRecord::Schema.define(version: 20150921010602) do
 
   create_table "admin_users", force: true do |t|
     t.string   "name"
@@ -19,5 +19,15 @@ ActiveRecord::Schema.define(version: 20150921002244) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "favorite_sites", force: true do |t|
+    t.integer  "admin_users_id"
+    t.string   "url"
+    t.integer  "rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorite_sites", ["admin_users_id"], name: "index_favorite_sites_on_admin_users_id", using: :btree
 
 end
