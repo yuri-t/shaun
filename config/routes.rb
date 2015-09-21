@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :favorite_sites
+  resources :favorite_sites do
+    collection do
+      post 'search'
+    end
+  end
 
   namespace :admin do
     resources :users

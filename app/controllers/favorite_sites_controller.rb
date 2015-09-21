@@ -62,6 +62,14 @@ class FavoriteSitesController < ApplicationController
     end
   end
 
+  def search
+    @favorite_form = FavoriteSite::SearchForm.new(params[:favorite_site_search_form])
+    @favorite_sites = @favorite_form.search
+
+
+    render 'index'    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite_site
