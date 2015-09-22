@@ -56,7 +56,8 @@
             <tr>
               <td><%= favorite_site.try(:admin_user).try(:name) %></td>
               <td><%= favorite_site.url %></td>
-              <td><%= favorite_site.rate %></td>
+              <% image = rate_image(favorite_site.rate) %>
+              <td><%= image_tag(image, :size => "115x25", :alt => favorite_site.rate) if image.present? %></td>
               <td><%= link_to 'Show', favorite_site %></td>
               <td><%= link_to 'Edit', edit_favorite_site_path(favorite_site) %></td>
               <td><%= link_to 'Destroy', favorite_site, method: :delete, data: { confirm: 'Are you sure?' } %></td>

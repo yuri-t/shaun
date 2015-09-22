@@ -8,5 +8,5 @@
 favorite_site_<%= "%02d" % i %>:
   admin_user_id: 1
   url: http://aa<%= i %>
-  rate: <%= i  % 5 %>
+  rate: <%= i % 5 + 1 %>
 <% end %>
