@@ -1,10 +1,10 @@
-<%= form_for(@favorite_site) do |f| %>
-  <% if @favorite_site.errors.any? %>
+<%= form_for(@favorite_sites) do |f| %>
+  <% if @favorite_sites.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@favorite_site.errors.count, "error") %> prohibited this favorite_site from being saved:</h2>
+      <h2><%= pluralize(@favorite_sites.errors.count, "error") %> prohibited this favorite_sites from being saved:</h2>
 
       <ul>
-      <% @favorite_site.errors.full_messages.each do |message| %>
+      <% @favorite_sites.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
