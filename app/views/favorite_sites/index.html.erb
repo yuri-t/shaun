@@ -36,38 +36,38 @@
 
 <div class"row">
   <div class="col-lg-offset-1 col-lg-10">
-    <%= paginate @favorite_sites %>
-    <%= page_entries_info(@favorite_sites) %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ユーザー名</th>
-          <th>URL</th>
-          <th>評価</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @favorite_sites.each do |favorite_site| %>
+    <% if @favorite_sites.present? %>
+      <%= paginate @favorite_sites %>
+      <%= page_entries_info(@favorite_sites) %>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= favorite_site.try(:admin_user).try(:name) %></td>
-            <td><%= favorite_site.url %></td>
-            <td><%= favorite_site.rate %></td>
-            <td><%= link_to 'Show', favorite_site %></td>
-            <td><%= link_to 'Edit', edit_favorite_site_path(favorite_site) %></td>
-            <td><%= link_to 'Destroy', favorite_site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <th>ユーザー名</th>
+            <th>URL</th>
+            <th>評価</th>
+            <th></th>
+            <th></th>
+            <th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @favorite_sites.each do |favorite_site| %>
+            <tr>
+              <td><%= favorite_site.try(:admin_user).try(:name) %></td>
+              <td><%= favorite_site.url %></td>
+              <td><%= favorite_site.rate %></td>
+              <td><%= link_to 'Show', favorite_site %></td>
+              <td><%= link_to 'Edit', edit_favorite_site_path(favorite_site) %></td>
+              <td><%= link_to 'Destroy', favorite_site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-1 col-md-offset-1">
-  <%= link_to 'New Favorite site', new_favorite_site_path %>
-  </div>
+  <%= link_to '新規作成', new_favorite_site_path, :class => 'btn btn-primary col-lg-1 col-md-offset-10' %>
 </div>
