@@ -4,8 +4,9 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+<% for i in 1..50 do %>
+favorite_site_<%= "%02d" % i %>:
+  admin_user_id: 1
+  url: http://aa<%= i %>
+  rate: <%= i  % 5 %>
+<% end %>
