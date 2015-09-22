@@ -15,7 +15,7 @@ class FavoriteSitesController < ApplicationController
 
   # GET /favorite_sites/new
   def new
-    @favorite_sites = FavoriteSite.new
+    @favorite_site = FavoriteSite.new
   end
 
   # GET /favorite_sites/1/edit
@@ -66,8 +66,8 @@ class FavoriteSitesController < ApplicationController
     @favorite_form = FavoriteSite::SearchForm.new(params[:favorite_site_search_form])
     @favorite_sites = @favorite_form.search
 
-
-    render 'index'    
+    render 'index'
+    # render 'index', :formats => [:json], :handlers => [:jbuilder]
   end
 
   private
