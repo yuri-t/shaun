@@ -16,7 +16,7 @@ class FavoriteSitesController < ApplicationController
   # GET /favorite_sites/new
   def new
     @favorite_site = FavoriteSite.new
-    @favorite_edit_form = FavoriteSite::EditForm.new
+#    @favorite_edit_form = FavoriteSite::EditForm.new
   end
 
   # GET /favorite_sites/1/edit
