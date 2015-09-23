@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root :to => 'favorite_sites#index'
+
   resources :favorite_sites do
     collection do
       post 'search'
