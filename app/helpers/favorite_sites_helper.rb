@@ -16,4 +16,14 @@ module FavoriteSitesHelper
 
   	image_name
   end
+
+  def search_rate_select_values
+  	{
+  	  '星1つ以上' => FavoriteSite::STAR[:one],
+  	  '星2つ以上' => FavoriteSite::STAR[:two],
+  	  '星3つ以上' => FavoriteSite::STAR[:three],
+  	  '星4つ以上' => FavoriteSite::STAR[:four],
+  	  '星5つ以上' => FavoriteSite::STAR[:five]
+  	}
+  end
 end

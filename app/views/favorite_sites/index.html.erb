@@ -1,11 +1,14 @@
 <h1>Listing favorite_sites</h1>
 
+<div class="row">
+  <%= link_to '新規作成', new_favorite_site_path, :class => 'btn btn-primary col-lg-1 col-md-offset-9' %>
+</div>
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-body">
       <%= form_for @favorite_form, url: :search_favorite_sites, html: { class: 'form-horizontal'} do |f| %>
         <fieldset>
-          <legend>検索条件</legend>
+          <legend>絞り込み条件</legend>
           <div class="form-group">
             <%= f.label :name, "ユーザー名:", class: 'control-label col-lg-3' %>
             <div class="col-lg-6">      
@@ -22,8 +25,8 @@
 
           <div class="form-group">
             <%= f.label :rate, "評価:", class: 'control-label col-lg-3' %>
-            <div class="col-lg-6">     
-              <%= f.text_field :rate, class: 'form-control', placeholder:'1' %>
+            <div class="col-sm-4">
+              <%= f.select :rate, search_rate_select_values, { include_blank: false }, { id: 'rate-select', class: 'form-control' }  %>
             </div>
           </div>
 
@@ -69,6 +72,3 @@
   </div>
 </div>
 
-<div class="row">
-  <%= link_to '新規作成', new_favorite_site_path, :class => 'btn btn-primary col-lg-1 col-md-offset-10' %>
-</div>
