@@ -66,7 +66,7 @@ class FavoriteSitesController < ApplicationController
     @favorite_form = FavoriteSite::SearchForm.new(params[:favorite_site_search_form])
     @favorite_sites = @favorite_form.search.page(params[:page])
 
-    redirect_to "/favorite_sites"
+    render 'index'
     # render 'index', :formats => [:json], :handlers => [:jbuilder]
   end
 
