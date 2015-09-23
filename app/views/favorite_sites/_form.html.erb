@@ -1,17 +1,34 @@
-<%= form_for(@favorite_sites) do |f| %>
-  <% if @favorite_sites.errors.any? %>
+<%= form_for(@favorite_site) do |f| %>
+  <% if @favorite_site.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@favorite_sites.errors.count, "error") %> prohibited this favorite_sites from being saved:</h2>
-
-      <ul>
-      <% @favorite_sites.errors.full_messages.each do |message| %>
+      <% @favorite_site.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="actions">
+  <div class="container">
+    <div class="panel-body">
+      <%= form_for @favorite_site, url: polymorphic_path([controller.action_name, :favorite_site]), method: (@favorite_site.persisted?  ? :patch : :post), html: { class: 'form-horizontal'} do |f| %>
+        <div class="form-group">
+          <%= f.label :admin_user, "ユーザー名:", class: 'control-label col-lg-3'  %>
+          <%= f.text_field :admin_user, class: 'form-control', placeholder:'ユーザー名' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :url, "URL:", class: 'control-label col-lg-3'  %>
+          <%= f.text_field :url, class: 'form-control', placeholder:'http://~' %>
+        </div>
     <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="actions">
+      <h2><%= pluralize(@favorite_site.errors.count, "error") %> prohibited this favorite_site from being saved:</h2>
+
+      <ul>
   </div>
 <% end %>

@@ -1,7 +1,7 @@
 <h1>Listing favorite_sites</h1>
 
 <div class="row">
-  <%= link_to '新規作成', new_favorite_site_path, :class => 'btn btn-primary col-lg-1 col-md-offset-9' %>
+  <%= button_to '新規作成', new_favorite_site_path, :method => :get, id: 'create_btn',:class => 'btn btn-primary col-lg-1 col-md-offset-9' %>
 </div>
 <div class="container">
   <div class="panel panel-default">

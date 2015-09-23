@@ -16,6 +16,7 @@ class FavoriteSitesController < ApplicationController
   # GET /favorite_sites/new
   def new
     @favorite_site = FavoriteSite.new
+    @favorite_edit_form = FavoriteSite::EditForm.new
   end
 
   # GET /favorite_sites/1/edit
@@ -25,12 +26,21 @@ class FavoriteSitesController < ApplicationController
   # POST /favorite_sites
   # POST /favorite_sites.json
   def create
-    @favorite_site = FavoriteSite.new(favorite_site_params)
+    # @favorite_edit_form = FavoriteSite::EditForm.new(favorite_site_params)
+    @favorite_sites = FavoriteSite.page(params[:page])
+    @favorite_form = FavoriteSite::SearchForm.new
+    at = params.require(:favorite_site).permit(:admin_user, :url, :rate)
+
+    # param = favorite_site_params
+    @favorite_site = FavoriteSite.new
+    @favorite_site.url = params[:favorite_site][:url]
+    logger.debug "-------------create params #{@favorite_site.url}"
 
     respond_to do |format|
       if @favorite_site.save
-        format.html { redirect_to @favorite_site, notice: 'Favorite site was successfully created.' }
-        format.json { render :show, status: :created, location: @favorite_site }
+        # format.html { redirect_to @favorite_site, notice: 'Favorite site was successfully created.' }
+        format.html { render :index }
+        format.json { render :show, status: :created, location:@favorite_site }
       else
         format.html { render :new }
         format.json { render json: @favorite_site.errors, status: :unprocessable_entity }
