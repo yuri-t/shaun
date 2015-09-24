@@ -15,35 +15,40 @@ class FavoriteSitesController < ApplicationController
 
   # GET /favorite_sites/new
   def new
+    #TODO エラー用フォーム修正
     @favorite_site = FavoriteSite.new
-#    @favorite_edit_form = FavoriteSite::EditForm.new
+    @favorite_edit_form = FavoriteSite::EditForm.new
+    # @favorite_edit_form = FavoriteSite::EditForm.new
   end
 
   # GET /favorite_sites/1/edit
   def edit
+    @favorite_edit_form = FavoriteSite::EditForm.new
+    @favorite_edit_form.favorite_site = FavoriteSite.find(params[:id])
   end
 
   # POST /favorite_sites
   # POST /favorite_sites.json
   def create
     # @favorite_edit_form = FavoriteSite::EditForm.new(favorite_site_params)
-    @favorite_sites = FavoriteSite.page(params[:page])
+    # @favorite_sites = FavoriteSite.page(params[:page])
+    # @favorite_site = FavoriteSite::SearchForm.new
+    @favorite_edit_form = FavoriteSite::EditForm.new(favorite_site_params)
     @favorite_form = FavoriteSite::SearchForm.new
-    at = params.require(:favorite_site).permit(:admin_user, :url, :rate)
+    # at = params.require(:favorite_site).permit(:admin_user_id, :url, :rate)
 
     # param = favorite_site_params
-    @favorite_site = FavoriteSite.new
-    @favorite_site.url = params[:favorite_site][:url]
-    logger.debug "-------------create params #{@favorite_site.url}"
+    # @favorite_site = FavoriteSite.new(favorite_site_params)
+    # @favorite_site.url = params[:favorite_site][:url]
 
     respond_to do |format|
-      if @favorite_site.save
+      if @favorite_edit_form.save
         # format.html { redirect_to @favorite_site, notice: 'Favorite site was successfully created.' }
-        format.html { render :index }
-        format.json { render :show, status: :created, location:@favorite_site }
+        format.html { redirect_to favorite_sites_path }
+        # format.json { render :show, status: :created, location:@favorite_site }
       else
         format.html { render :new }
-        format.json { render json: @favorite_site.errors, status: :unprocessable_entity }
+        # format.json { render json: @favorite_site.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -88,6 +93,7 @@ class FavoriteSitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def favorite_site_params
-      params[:favorite_site]
+      # params[:favorite_site]
+      params.require(:favorite_site_edit_form).permit(:admin_user, :url, :rate)
     end
 end
