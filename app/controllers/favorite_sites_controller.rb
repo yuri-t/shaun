@@ -56,13 +56,17 @@ class FavoriteSitesController < ApplicationController
   # PATCH/PUT /favorite_sites/1
   # PATCH/PUT /favorite_sites/1.json
   def update
+    @favorite_edit_form = FavoriteSite::EditForm.new(favorite_site_params)
+    @favorite_edit_form.id = params[:id]
     respond_to do |format|
-      if @favorite_site.update(favorite_site_params)
-        format.html { redirect_to @favorite_site, notice: 'Favorite site was successfully updated.' }
-        format.json { render :show, status: :ok, location: @favorite_site }
+      if @favorite_edit_form.save
+        @favorite_form = FavoriteSite::SearchForm.new
+        # format.html { redirect_to @favorite_site, notice: 'Favorite site was successfully updated.' }
+        format.html { redirect_to favorite_sites_path, notice: '更新しました'}
+        # format.json { render :show, status: :ok, location: @favorite_site }
       else
         format.html { render :edit }
-        format.json { render json: @favorite_site.errors, status: :unprocessable_entity }
+        # format.json { render json: @favorite_site.errors, status: :unprocessable_entity }
       end
     end
   end
