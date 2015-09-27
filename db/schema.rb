@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20150921010602) do
 
   create_table "admin_users", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"

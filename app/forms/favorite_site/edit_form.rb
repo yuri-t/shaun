@@ -6,7 +6,7 @@ class FavoriteSite::EditForm
   # インスタンスの取得
   def favorite_site
     @favorite_site = id.present? ? FavoriteSite.find(id) : FavoriteSite.new
-    @favorite_site.admin_user_id = Admin::User.find_by(name: admin_user).try(:id)
+    @favorite_site.admin_user_id = Admin::User.find_by(id: admin_user).try(:id)
     @favorite_site.url = url
     @favorite_site.rate = rate
     @favorite_site

@@ -13,7 +13,7 @@
       <%= form_for @favorite_edit_form, url: polymorphic_path(@favorite_edit_form.favorite_site), method: (@favorite_edit_form.favorite_site.persisted?  ? :patch : :post), html: { class: 'form-horizontal'} do |f| %>
         <div class="form-group">
           <%= f.label :admin_user, "ユーザー名:", class: 'control-label col-lg-3'  %>
-          <%= f.text_field :admin_user, class: 'form-control', placeholder:'ユーザー名' %>
+          <%= f.collection_select :admin_user, Admin::User.all, :id, :name, {include_blank: false }, class: 'form-control' %>
         </div>
 
         <div class="form-group">
@@ -37,9 +37,15 @@
         </div>
 
         <div class="form-group">
-        <div class="col-lg-10">
-        <%= f.submit "更新する", class: "btn btn-primary col-lg-1 col-lg-offset-1" %>
-        </div>
+        <% if controller.action_name == 'edit' %>
+          <div class="control-label">
+            <%= f.submit "更新する", class: "btn btn-primary col-lg-1 col-lg-offset-1" %>
+          </div>
+        <% else %>
+          <div class="control-label">
+            <%= f.submit "新規登録", class: "btn btn-primary col-lg-1 col-lg-offset-1" %>
+          </div>
+        <% end %>
         </div>
       <% end %>
     </div>

@@ -11,8 +11,8 @@
           <legend>絞り込み条件</legend>
           <div class="form-group">
             <%= f.label :name, "ユーザー名:", class: 'control-label col-lg-3' %>
-            <div class="col-lg-6">      
-              <%= f.text_field :user, class: 'form-control', placeholder:'ユーザー名' %>
+            <div class="col-lg-6">
+              <%= f.collection_select :user, Admin::User.all, :id, :name, {include_blank: false }, class: 'form-control' %>
             </div>
           </div>
 

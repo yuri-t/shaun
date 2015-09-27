@@ -15,7 +15,6 @@ class FavoriteSitesController < ApplicationController
 
   # GET /favorite_sites/new
   def new
-    #TODO エラー用フォーム修正
     @favorite_site = FavoriteSite.new
     @favorite_edit_form = FavoriteSite::EditForm.new
     # @favorite_edit_form = FavoriteSite::EditForm.new
@@ -30,25 +29,14 @@ class FavoriteSitesController < ApplicationController
   # POST /favorite_sites
   # POST /favorite_sites.json
   def create
-    # @favorite_edit_form = FavoriteSite::EditForm.new(favorite_site_params)
-    # @favorite_sites = FavoriteSite.page(params[:page])
-    # @favorite_site = FavoriteSite::SearchForm.new
     @favorite_edit_form = FavoriteSite::EditForm.new(favorite_site_params)
     @favorite_form = FavoriteSite::SearchForm.new
-    # at = params.require(:favorite_site).permit(:admin_user_id, :url, :rate)
-
-    # param = favorite_site_params
-    # @favorite_site = FavoriteSite.new(favorite_site_params)
-    # @favorite_site.url = params[:favorite_site][:url]
 
     respond_to do |format|
       if @favorite_edit_form.save
-        # format.html { redirect_to @favorite_site, notice: 'Favorite site was successfully created.' }
         format.html { redirect_to favorite_sites_path }
-        # format.json { render :show, status: :created, location:@favorite_site }
       else
         format.html { render :new }
-        # format.json { render json: @favorite_site.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,12 +49,9 @@ class FavoriteSitesController < ApplicationController
     respond_to do |format|
       if @favorite_edit_form.save
         @favorite_form = FavoriteSite::SearchForm.new
-        # format.html { redirect_to @favorite_site, notice: 'Favorite site was successfully updated.' }
         format.html { redirect_to favorite_sites_path, notice: '更新しました'}
-        # format.json { render :show, status: :ok, location: @favorite_site }
       else
         format.html { render :edit }
-        # format.json { render json: @favorite_site.errors, status: :unprocessable_entity }
       end
     end
   end
