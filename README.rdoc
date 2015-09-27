@@ -1,28 +1,67 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+趣味管理用アプリケーション
+提供機能は以下のとおり
+・ユーザー一覧機能
+・お気に入りサイト	一覧機能 ※ユーザー登録後に使用してください
 
-Things you may want to cover:
+* Ruby バージョン
+2.1.0
 
-* Ruby version
+* Rails バージョン
+4.1.0
 
-* System dependencies
+* Database について
+mysql2
 
-* Configuration
+* mysql2 の設定について
+本アプリ起動には、mysqlが必要です。
 
-* Database creation
+・mysqlのインストール(linux)
+> yum -y install mysql-server mysql-devel
+> service mysqld start
+> chkconfig mysqld on
 
-* Database initialization
+・mysql rootパスワードの設定
+パスワード未設定の場合は以下で設定
+>  mysql -u root
 
-* How to run the test suite
+#パスワードの変更
+mysql > UPDATE mysql.user SET Password=PASSWORD('password') WHERE User='root';
+mysql > FLUSH PRIVILEGES;
 
-* Services (job queues, cache servers, search engines, etc.)
+# mysql再起動
+> service mysqld restart
 
-* Deployment instructions
+# パスワード変更後、mysqlツールに入るには
+> mysql -u root -p
+Enter password:
 
-* ...
+・mysql の設定変更
+パスワードやsockファイル等の場所が異なる場合「congig/database.yml」を修正してください。
 
+デフォルトは以下の設定になっています。
+default: &default
+adapter: mysql2
+encoding: utf8
+pool: 5
+username: root
+password: 'password'
+socket: /var/lib/mysql/mysql.sock
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* 起動方法
+★初回のみ
+DB作成のため、下記コマンドを実行してください。
+> rake db:create
+> rake db:migrate
+
+1. サーバー起動
+>rails s
+
+2. ユーザー登録
+以下にアクセス
+http://localhost:3000/admin/users
+※ポートは環境に合わせて変更してください
+
+3. お気に入りサイト登録
+http://localhost:3000/favorite_sites
