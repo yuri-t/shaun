@@ -5,37 +5,34 @@
 ・ユーザー一覧機能
 ・お気に入りサイト	一覧機能 ※ユーザー登録後に使用してください
 
-* Ruby バージョン
+=== Ruby バージョン
 2.1.0
 
-* Rails バージョン
+=== Rails バージョン
 4.1.0
 
-* Database について
-mysql2
-
-* mysql2 の設定について
+=== mysql2 の設定について
 本アプリ起動には、mysqlが必要です。
 
 ・mysqlのインストール(linux)
-> yum -y install mysql-server mysql-devel
-> service mysqld start
-> chkconfig mysqld on
+ $ yum -y install mysql-server mysql-devel
+ $ service mysqld start
+ $ chkconfig mysqld on
 
 ・mysql rootパスワードの設定
 パスワード未設定の場合は以下で設定
->  mysql -u root
+ $  mysql -u root
 
-#パスワードの変更
+<b>パスワードの変更</b>
 mysql > UPDATE mysql.user SET Password=PASSWORD('password') WHERE User='root';
 mysql > FLUSH PRIVILEGES;
 
-# mysql再起動
-> service mysqld restart
+<b>mysql再起動</b>
+ $ service mysqld restart
 
 # パスワード変更後、mysqlツールに入るには
-> mysql -u root -p
-Enter password:
+ $ mysql -u root -p
+ $ Enter password:
 
 ・mysql の設定変更
 パスワードやsockファイル等の場所が異なる場合「congig/database.yml」を修正してください。
@@ -49,19 +46,23 @@ username: root
 password: 'password'
 socket: /var/lib/mysql/mysql.sock
 
-* 起動方法
+=== 起動方法
 ★初回のみ
 DB作成のため、下記コマンドを実行してください。
-> rake db:create
-> rake db:migrate
+ $ rake db:create
+ $ rake db:migrate
 
-1. サーバー起動
->rails s
+<b>サーバー起動</b>
 
-2. ユーザー登録
+ $ rails s
+
+<b>ユーザー登録</b>
+
 以下にアクセス
 http://localhost:3000/admin/users
+
 ※ポートは環境に合わせて変更してください
 
-3. お気に入りサイト登録
+<b>お気に入りサイト登録</b>
+
 http://localhost:3000/favorite_sites
