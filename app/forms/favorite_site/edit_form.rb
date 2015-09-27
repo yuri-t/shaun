@@ -17,7 +17,7 @@ class FavoriteSite::EditForm
     @favorite_site = favorite_site
 
     self.id = favorite_site.id
-    self.admin_user = favorite_site.admin_user.name
+    self.admin_user = favorite_site.try(:admin_user).try(:name)
     self.url = favorite_site.url
     self.rate = favorite_site.rate
 
