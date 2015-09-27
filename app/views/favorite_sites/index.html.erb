@@ -1,4 +1,4 @@
-<h1>Listing favorite_sites</h1>
+<h1>お気に入りサイト一覧</h1>
 
 <div class="row">
   <%= button_to '新規作成', new_favorite_site_path, :method => :get, id: 'create_btn',:class => 'btn btn-primary col-lg-1 col-md-offset-9' %>
@@ -50,7 +50,6 @@
             <th>評価</th>
             <th></th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -58,12 +57,11 @@
           <% @favorite_sites.each do |favorite_site| %>
             <tr>
               <td><%= favorite_site.try(:admin_user).try(:name) %></td>
-              <td><%= favorite_site.url %></td>
+              <td><%= link_to favorite_site.url, favorite_site.url %></td>
               <% image = rate_image(favorite_site.rate) %>
               <td><%= image_tag(image, :size => "115x25", :alt => favorite_site.rate) if image.present? %></td>
-              <td><%= link_to 'Show', favorite_site %></td>
-              <td><%= link_to 'Edit', edit_favorite_site_path(favorite_site) %></td>
-              <td><%= link_to 'Destroy', favorite_site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to '編集', edit_favorite_site_path(favorite_site) %></td>
+              <td><%= link_to '削除', favorite_site, method: :delete, data: { confirm: '削除しますか?' } %></td>
             </tr>
           <% end %>
         </tbody>

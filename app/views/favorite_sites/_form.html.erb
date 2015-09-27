@@ -28,7 +28,6 @@
           <% FavoriteSite::STAR.each {|key, value| %>
           <div class="col-lg-9">
             <label class="radio-inline">
-              <% Rails.logger.debug "------- radio #{value}" %>
               <%= f.radio_button :rate, value %>
               <% image = rate_image(value) %>
               <%= image_tag(image, :size => "115x25", :alt => key) if image.present? %>
@@ -37,15 +36,12 @@
           <% } %>
         </div>
 
-        <%= f.submit %>
+        <div class="form-group">
+        <div class="col-lg-10">
+        <%= f.submit "更新する", class: "btn btn-primary col-lg-1 col-lg-offset-1" %>
+        </div>
+        </div>
       <% end %>
     </div>
-  </div>
-
-
-  <div class="actions">
-      <h2><%= pluralize(@favorite_site.errors.count, "error") %> prohibited this favorite_site from being saved:</h2>
-
-      <ul>
   </div>
 <% end %>
